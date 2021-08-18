@@ -34,7 +34,7 @@ publishing {
             // here your PROVIDE the PROJECT-URI for publishing your package
             // in the project-specific package-space which is also visible at
             // the group scope above
-            url =  uri("${CI_API_V4_URL}/groups/<group>/-/packages/maven")
+            url =  uri("https://gitlab.com/api/v4/projects/28955808/packages/maven")
             name = "Gitlab"
             credentials(HttpHeaderCredentials) {
                 name = "Job-Token"
