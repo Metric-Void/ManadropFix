@@ -2,6 +2,8 @@ package fr.il_totore.manadrop.task;
 
 import fr.il_totore.manadrop.util.LoggerProcessBuilder;
 import org.gradle.api.DefaultTask;
+import org.gradle.api.tasks.Input;
+import org.gradle.api.tasks.InputDirectory;
 import org.gradle.api.tasks.TaskAction;
 
 import javax.inject.Inject;
@@ -13,8 +15,13 @@ import java.util.function.Supplier;
 
 public class ExecuteScript extends DefaultTask {
 
+    @InputDirectory
     private File workDir;
+
+    @Input
     private Supplier<List<String>> commands;
+
+    @Input
     private boolean showLogs = false;
 
     @Inject

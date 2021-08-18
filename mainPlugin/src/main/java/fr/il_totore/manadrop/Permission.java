@@ -20,12 +20,12 @@ public class Permission implements YamlSerializable {
     @Override
     public void write(ConfigurationSection section) {
         Objects.requireNonNull(name, "name cannot be null !");
-        ConfigurationSection permSection = section.createSection(name);
+        ConfigurationSection permSection = section.createSectionRaw(name);
         description.ifPresent(value -> permSection.set("description", value));
         defaultType.ifPresent(value -> permSection.set("default", value.getId()));
         children.ifAllPresent(0, children -> {
             ConfigurationSection childSection = permSection.createSection("children");
-            children.forEach(child -> childSection.set(child.getName(), String.valueOf(child.doesInherit())));
+            children.forEach(child -> childSection.setRaw(child.getName(), String.valueOf(child.doesInherit())));
         });
     }
 

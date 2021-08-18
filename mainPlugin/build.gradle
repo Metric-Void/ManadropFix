@@ -1,6 +1,5 @@
 plugins {
     id 'maven-publish'
-    id 'com.gradle.plugin-publish' version '0.11.0'
     id 'java-gradle-plugin'
 }
 
@@ -8,32 +7,32 @@ version = '1.0'
 
 dependencies {
     implementation gradleApi()
-    shadow 'com.github.carleslc:simple-yaml:1.4.1'
+    shadow 'org.yaml:snakeyaml:1.29'
     shadow project(':util')
 }
 
 gradlePlugin {
     plugins {
         manadrop {
-            id = 'fr.il_totore.manadrop'
+            id = 'com.metricv.ManadropFix'
             implementationClass = 'fr.il_totore.manadrop.ManaDrop'
         }
     }
 }
 
-pluginBundle {
-    ext['gradle.publish.key'] = System.getenv('gradle.publish.key')
-    ext['gradle.publish.secret'] = System.getenv('gradle.publish.secret')
-    website = 'https://github.com/Iltotore/ManaDrop'
-    vcsUrl = 'https://github.com/Iltotore/ManaDrop'
-    description = 'A Gradle plugin for Minecraft Development'
-    tags = ['minecraft', 'spigot', 'bungeecord']
-    plugins {
-        manadrop {
-            displayName = 'ManaDrop'
-        }
-    }
-}
+//pluginBundle {
+//    ext['gradle.publish.key'] = System.getenv('gradle.publish.key')
+//    ext['gradle.publish.secret'] = System.getenv('gradle.publish.secret')
+//    website = 'https://github.com/Iltotore/ManaDrop'
+//    vcsUrl = 'https://github.com/Iltotore/ManaDrop'
+//    description = 'A Gradle plugin for Minecraft Development'
+//    tags = ['minecraft', 'spigot', 'bungeecord']
+//    plugins {
+//        manadrop {
+//            displayName = 'ManaDrop'
+//        }
+//    }
+//}
 
 shadowJar {
     configurations = [project.configurations.shadow]
