@@ -13,7 +13,7 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        manadrop {
+        manadropfix {
             id = 'com.metricv.ManadropFix'
             implementationClass = 'fr.il_totore.manadrop.ManaDrop'
         }
@@ -29,6 +29,25 @@ publishing {
                 username = System.getenv("GITHUB_ACTOR")
                 password = System.getenv("GITHUB_TOKEN")
             }
+        }
+        maven {
+            // here your PROVIDE the PROJECT-URI for publishing your package
+            // in the project-specific package-space which is also visible at
+            // the group scope above
+            url =  uri("${CI_API_V4_URL}/groups/<group>/-/packages/maven")
+            name = "Gitlab"
+            credentials(HttpHeaderCredentials) {
+                name = "Job-Token"
+                value = System.getenv("CI_JOB_TOKEN")
+            }
+            authentication {
+                header(HttpHeaderAuthentication)
+            }
+        }
+    }
+    publications {
+        withType(MavenPublication) {
+            artifact(shadowJar)
         }
     }
 }
