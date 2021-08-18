@@ -3,7 +3,7 @@ plugins {
     id 'java-gradle-plugin'
 }
 
-version = '1.0'
+version = '0.5-SNAPSHOT'
 
 dependencies {
     implementation gradleApi()
