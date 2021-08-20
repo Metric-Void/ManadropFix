@@ -5,35 +5,30 @@
 ![License Badge](https://img.shields.io/github/license/Iltotore/ManaDrop)
 ![Release badge](https://img.shields.io/github/v/release/Iltotore/ManaDrop?include_prereleases)
 
-A Gradle plugin for Minecraft development.
+This is a fork of the [original ManaDrop project](https://www.github.com/Iltotore/ManaDrop).
 
-# Description
-ManaDrop is a Gradle plugin designed to help Minecraft developers.
-It helps to automatise some tasks and makes projects more portables.
+It fixes the generation of permission section in plugin.yml and updated Gradle to 7.2. 
+However, these was done in a rather agressive way (since Java does not support extension functions)
+so there is no plan to merge this fork into the master repository.
 
-# Features
-Here are main features of this plugin. For more details about them, check the [wiki](https://github.com/Iltotore/ManaDrop/wiki/)
+It has been given another plugin name to avoid confusion.
 
-## General
-- [Dependency and Repository shortcuts](https://github.com/Iltotore/ManaDrop/wiki/General-features#dependency-and-repository-shortcuts)
-- [YAML validation](https://github.com/Iltotore/ManaDrop/wiki/General-features#yaml-validation)
+### How to use this variant of plugin
+The binary was published with GitLab Package Registry.
 
-## Spigot and Paper
-- [Plugin.yml generation](https://github.com/Iltotore/ManaDrop/wiki/Spigot#pluginyml-generation)
-- [NMS dependencies management](https://github.com/Iltotore/ManaDrop/wiki/Spigot#nms-support)
-
-## BungeeCord and Waterfall
-- [Bungee.yml generation](https://github.com/Iltotore/ManaDrop/wiki/BungeeCord#bungeeyml-generation)
-
-# Use in your project
-You can use this plugin in your Gradle Build by applying it.
-- Using `apply plugin: fr.il_totore.manadrop:version`
-
-- Using the new `plugins` statement
-```gradle
-plugins {
-   id 'fr.il_totore.manadrop' version 'version'
+In gradle.settings.kts
+```kotlin
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        maven("https://gitlab.com/api/v4/projects/28955808/packages/maven")
+    }
 }
 ```
 
-Check the latest available version [here](https://plugins.gradle.org/plugin/fr.il_totore.manadrop)
+- In build.gradle.kts
+```kotlin
+plugins {
+    id("com.metricv.ManadropFix") version "0.5-SNAPSHOT"
+}
+```
